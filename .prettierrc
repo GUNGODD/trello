@@ -1,0 +1,15 @@
+{
+  "tabWidth": 2,
+  "useTabs": false,
+  "insertSpace": true,
+  "proseWrap": "preserve",
+  "overrides": [
+    {
+      "files": "*.md",
+      "options": {
+        "proseWrap": "never"
+      }
+    }
+  ]
+  
+}
