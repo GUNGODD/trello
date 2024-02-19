@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body suppressHydrationWarning={true}  className={inter.className}>
         <header className="bg-gray-200 p-4"> 
           <a href="" className="logo">Trellooo</a>
         </header>
