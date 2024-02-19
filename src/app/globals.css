@@ -10,7 +10,7 @@ body{
 button[type="button"],
 button[type="submit"]{  
 
-  @apply bg-gray-400 text-gray-900 py-2 px-4 border border-gray-200;
+  @apply bg-gray-500 text-gray-900 py-2 px-4 border border-gray-200;
 }
 
 button[type="submit"]{
