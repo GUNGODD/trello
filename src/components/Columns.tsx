@@ -1,5 +1,5 @@
 
- import {CardType, cards} from "@/components/Board";
+ import {CardType} from "@/components/Board";
  
  
  type ColumnProps = {
