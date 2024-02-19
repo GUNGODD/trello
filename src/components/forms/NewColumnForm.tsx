@@ -15,7 +15,7 @@ export  default  function NewColumnForm(){
     }
     
     return (
-<form onSubmit={handleNewColumn} className="max-w-xs ml-[60%]">
+<form onSubmit={handleNewColumn} className="max-w-xs ml-[60%] shrink-0 shadow-lg rounded-xl">
     <label className="block">
         <span className="text-gray-600 block">Column name:</span>
         <input type="text" placeholder="new column name" />

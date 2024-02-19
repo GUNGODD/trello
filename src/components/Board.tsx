@@ -8,17 +8,19 @@ const columns  = [
     {id: 'Chota bheem', name: 'done', index:2},
 ];
 
+
 export default  function Board(){
     return (
         <>
 
-        <div className="flex  gap-4">
+        <div className="flex   gap-4">
             {columns.map(column =>(
         
               <Column key={column.index} name={column.name} />
             ))}
-        </div>
+     
        <NewColumnForm/>
+       </div>
         </>
     )
 }
