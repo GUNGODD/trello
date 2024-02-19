@@ -6,6 +6,7 @@
   
     name: String;
     cards:CardType[];
+    setCards: (cards: CardType[] )=>void;
    
 
     
