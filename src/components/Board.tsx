@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 // Board.jsx
 "use client";
 import React from 'react';
@@ -15,15 +16,16 @@ const defaultColumns = [
 
 export type CardType = {
    
-        name: String;
-        id:String;
-        order:Number;
+        name: string;
+        id:string | number;
+        order:number;
+        columnId:string | number;
   
 }
 export const defaultCards = [
     { id: "Aditya", name: "Task 1", order: 0, columnId: 'Aditya' },
     { id: "Aditya", name: "Task 6", order: 0, columnId: 'Aditya' },
-    { id: "Anjali", name: "Task 2", order: 1, columnId: 'Anurag' },
+    { id: "Anjali", name: "Task 2", order: 1, columnId: 'Aditya' },
     { id: "Anurag", name: "Task 3", order: 2, columnId: 'Chota bheem' },
 
 ];
@@ -37,8 +39,8 @@ export default function Board() {
             <div className="flex gap-4">
                 {defaultColumns.map(column => (
         <div className="w-48 bg-white shadow-sm rounded-md p-2">
-                      <Column      name={...Column}
-                     
+                      <Column      name={Column.name}
+                     setCards={SetCards}
                        cards={cards.filter(c =>c.columnId === column.id)} />
         </div>
                 ))}

@@ -1,28 +1,42 @@
+import React, { SetStateAction } from "react";
+import { CardType } from "@/components/Board";
+import { ReactSortable } from "react-sortablejs";
 
- import {CardType} from "@/components/Board";
- 
- 
- type ColumnProps = {
-  
-    name: String;
-    cards:CardType[];
-    setCards: (cards: CardType[] )=>void;
-   
+type ColumnProps = {
+    id: string;
+    name: string;
+    cards: CardType[];
+    setCards: SetStateAction<CardType[]>;
+};
 
-    
-}; // do not make any typos 
+export default function Column({ id, name, cards, setCards }: ColumnProps) {
+    function setCardsForColumn(sortedCards: CardType[], newColumnId: string) {
+        console.log({ sortedCards, newColumnId }); // Corrected variable name
 
+        // Updating the columnId of each card
+        const updatedCards = sortedCards.map(card => ({
+            ...card,
+            columnId: newColumnId
+        }));
+        
+        // Setting the state with the updated cards
+        setCards(updatedCards);
+    }
 
-
-export default function Column({ name, cards }: ColumnProps) {
     return (
-        <div  className="w-48 bg-white shadow-sm rounded-md p-2">
+        <div className="w-48 bg-white shadow-sm rounded-md p-2">
             <h3>{name}</h3>
-            {cards.map(card => (
-                <div  className="border my-2 p-4 rounded-md">
-                    <span>{card.name}</span>
-                </div>
-            ))}
+            <ReactSortable
+                list={cards}
+                setList={sortedCards => setCardsForColumn(sortedCards, id)} // Corrected parameter name
+                group="cards"
+            >
+                {cards.map(card => (
+                    <div key={card.id} className="border my-2 p-4 rounded-md">
+                        <span>{card.name}</span>
+                    </div>
+                ))}
+            </ReactSortable>
         </div>
     );
 }
