@@ -1,7 +1,9 @@
+import NewColumnForm from "./forms/NewColumnForm";
+
 export default  function Board(){
     return (
         <>
-        <div>hello i am Board</div>
+       <NewColumnForm/>
         </>
     )
 }
