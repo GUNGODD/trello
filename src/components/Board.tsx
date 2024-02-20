@@ -17,16 +17,16 @@ export type  CardType = {
 
 id:string,
 name:string | number,
-order:number,
+index:number,
 columnId:string
 };
 
  const defaultCards = [ 
 
-    { id: "1", name: "Task 1", order: 1, columnId:"col1" },
-    { id: "2", name: "Task 2", order: 2, columnId:"col1" },
-    { id: "3", name: "Task 3", order: 3, columnId:"col2" },
-    { id: "4", name: "Task 4", order: 4, columnId:"col3" },
+    { id: "1", name: "Task 1", index: 1, columnId:"col1" },
+    { id: "2", name: "Task 2", index: 2, columnId:"col1" },
+    { id: "3", name: "Task 3", index: 3, columnId:"col2" },
+    { id: "4", name: "Task 4", index: 4, columnId:"col3" },
 
     
 ];

@@ -24,17 +24,16 @@ export default function Column({id , name, cards, setCards }: ColumnProps) {
     function setCardsForColumn(sortedCards: CardType[], NewColumnId:string) {
         console.log({sortedCards, NewColumnId});
         const sortedCardsIds = sortedCards.map(card => card.id);
+
+        // changing columns 
         setCards((prevCards:CardType[]) =>{
             const newCard = [...prevCards];
-            newCard.forEach(card => {
-                if(card.id === NewColumnId) {
-                    if(sortedCardsIds.includes(newCard.id)){
-                        newCard.columnId = NewColumnId;
-                    //  console.log(newCard.name + " : "  + NewColumnId);
-                    }
-                    
-              }
-            });
+           sortedCards.forEach((c:CardType, newIndex:number)=>{
+            const foundCard = newCard.find(newCard => newCard.id === c.id);
+            if ( foundCard) {
+                foundCard.index  = newIndex;;
+            }
+           })
             return newCard;
         });
       
