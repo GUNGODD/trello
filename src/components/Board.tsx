@@ -2,7 +2,7 @@
 // Board.jsx
 "use client";
 import React from 'react';
-import Column from './Columns';
+import Column from './Column';
 import NewColumnForm from "./forms/NewColumnForm";
 import  {useState} from "react";
 
@@ -19,7 +19,7 @@ export type CardType = {
         name: string;
         id:string | number;
         order:number;
-        columnId:string | number;
+        columnId:string;
   
 }
 export const defaultCards = [
@@ -32,17 +32,17 @@ export const defaultCards = [
 
 export default function Board() {
 
-    const [cards, SetCards] = useState(defaultCards);
+    const [cards, setCards] = useState(defaultCards);
     const [columns, SetColumns] = useState(defaultColumns);
     return (
         <>
             <div className="flex gap-4">
-                {defaultColumns.map(column => (
-        <div className="w-48 bg-white shadow-sm rounded-md p-2">
-                      <Column      name={Column.name}
-                     setCards={SetCards}
+                {columns.map(column => (
+      
+                      <Column      {...column}
+                     setCards={setCards}
                        cards={cards.filter(c =>c.columnId === column.id)} />
-        </div>
+      
                 ))}
                 <NewColumnForm />
             </div>

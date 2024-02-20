@@ -6,21 +6,27 @@ type ColumnProps = {
     id: string;
     name: string;
     cards: CardType[];
-    setCards: SetStateAction<CardType[]>;
+    setCards: SetStateAction<any>;
 };
 
 export default function Column({ id, name, cards, setCards }: ColumnProps) {
     function setCardsForColumn(sortedCards: CardType[], newColumnId: string) {
         console.log({ sortedCards, newColumnId }); // Corrected variable name
 
-        // Updating the columnId of each card
-        const updatedCards = sortedCards.map(card => ({
-            ...card,
-            columnId: newColumnId
-        }));
-        
+
+        const sortedCardsId = sortedCards.map(c => c.id);
+
+
         // Setting the state with the updated cards
-        setCards(updatedCards);
+        setCards((prevCards: CardType[]) => {
+            const newCards = [...prevCards];
+            newCards.forEach(newCards => {
+                if (sortedCardsId.includes(newCards.id)) {
+                    newCards.columnId = newColumnId;
+                }
+            });
+            return newCards;
+        });
     }
 
     return (
