@@ -14,7 +14,7 @@ export default function Column({ id, name, cards, setCards }: ColumnProps) {
         console.log({ sortedCards, newColumnId }); // Corrected variable name
 
 
-        const sortedCardsId = sortedCards.map(c => c.id);
+        const sortedCardsId = sortedCards.map(c => c?.id);
 
         // Sorting 
 
