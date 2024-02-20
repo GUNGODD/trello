@@ -4,6 +4,7 @@
 import { ItemInterface, ReactSortable } from "react-sortablejs";
 import Board, { CardType } from "./Board";
 import { SetStateAction } from "react";
+import { log } from "console";
 
 
 type ColumnProps = {
@@ -28,7 +29,8 @@ export default function Column({id , name, cards, setCards }: ColumnProps) {
             newCard.forEach(card => {
                 if(card.id === NewColumnId) {
                     if(sortedCardsIds.includes(newCard.id)){
-                        newCard.columnId = NewColumnId
+                        newCard.columnId = NewColumnId;
+                     console.log(newCard.name + " : "  + NewColumnId);
                     }
                     
               }
