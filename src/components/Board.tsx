@@ -42,7 +42,8 @@ export default  function Board(){
                 // eslint-disable-next-line react/jsx-key
            <Column {...column} 
            setCards ={setCards}
-           cards ={cards.filter(c => c.columnId === column.id)} />
+           cards ={cards.sort((a,b)=> a.index - b.index)
+            .filter(c => c.columnId === column.id)} />
              
             ))}
         </div>

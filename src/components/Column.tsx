@@ -22,7 +22,7 @@ export default function Column({id , name, cards, setCards }: ColumnProps) {
     // console.log({cards});
     // Card handling funciton 
     function setCardsForColumn(sortedCards: CardType[], NewColumnId:string) {
-        console.log({sortedCards, NewColumnId});
+ 
         const sortedCardsIds = sortedCards.map(card => card.id);
 
         // changing columns 
@@ -31,9 +31,11 @@ export default function Column({id , name, cards, setCards }: ColumnProps) {
            sortedCards.forEach((c:CardType, newIndex:number)=>{
             const foundCard = newCard.find(newCard => newCard.id === c.id);
             if ( foundCard) {
+                console.log(foundCard.name, newIndex);
                 foundCard.index  = newIndex;;
             }
-           })
+           });
+           console.log({newCard});
             return newCard;
         });
       
