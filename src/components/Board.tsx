@@ -5,12 +5,7 @@ import NewColumnForm from "./forms/NewColumnForm";
 
 
 
-export type  CardType = {
-    
-    id:string | number;
-    name: string;
-    index: number;
-}
+
 const defaultColumns  = [
 
     {id: 'sxsd', name: 'todo', index:0},
@@ -18,11 +13,11 @@ const defaultColumns  = [
     {id: 'kdxk', name: 'done', index:2},
 ];
 
-export const CardType = {
+export type  CardType = {
 
-id:String,
-name:String,
-order:Number,
+id:string,
+name:string | number,
+order:number,
 };
 
  const defaultCards = [ 
@@ -45,6 +40,7 @@ export default  function Board(){
             {columns.map(column =>(
                 // eslint-disable-next-line react/jsx-key
            <Column {...column} 
+           setCards ={setCards}
            cards ={cards.filter(c => c.columnId === column.id)} />
              
             ))}
