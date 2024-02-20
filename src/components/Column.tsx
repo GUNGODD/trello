@@ -16,17 +16,33 @@ export default function Column({ id, name, cards, setCards }: ColumnProps) {
 
         const sortedCardsId = sortedCards.map(c => c.id);
 
+        // Sorting 
+
+        // Changing the columns 
+
 
         // Setting the state with the updated cards
         setCards((prevCards: CardType[]) => {
             const newCards = [...prevCards];
-            newCards.forEach(newCards => {
+            sortedCards.forEach((sortedCards:CardType , newIndex:number)=>{
+                    const foundCard = newCards.find(newCards => newCards.id ===sortedCards.id );
+                    if(foundCard){
+                     foundCard.index = newIndex; 
+                    }
+            });
+            
+            return newCards;
+            });
+           
+    
+
+        // changed section 
+        /*
+        newCards.forEach(newCards => {
                 if (sortedCardsId.includes(newCards.id)) {
                     newCards.columnId = newColumnId;
                 }
-            });
-            return newCards;
-        });
+        */
     }
 
     return (
