@@ -39,10 +39,10 @@ export default function Board() {
     const [columns, SetColumns] = useState(defaultColumns);
     return (
         <>
-            <div className="flex gap-4">
+            <div  className="flex gap-4">
                 {columns.map(column => (
       
-                      <Column      {...column}
+                      <Column       {...column}
                      setCards={setCards}
                        cards={cards.sort((a,b) =>a.index - b.index)
                         .filter(c =>c.columnId === column.id)} />
