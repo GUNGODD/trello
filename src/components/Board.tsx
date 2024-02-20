@@ -15,9 +15,10 @@ const defaultColumns = [
 
 export type CardType = {
    
-        name: String;
-        id:String;
-        order:Number;
+        name: string;
+        id:string;
+        order:number;
+        columnId:String | number;
   
 }
 export const defaultCards = [
@@ -36,7 +37,7 @@ export default function Board() {
             <div className="flex gap-4">
                 {defaultColumns.map(column => (
         <div className="w-48 bg-white shadow-sm rounded-md p-2">
-                      <Column  name={...Column} cards={cards.filter(c =>c.columnId === column.id)} />
+                      <Column  {...Column} cards={cards.filter(c =>c.columnId === column.id)} />
         </div>
                 ))}
                 <NewColumnForm />

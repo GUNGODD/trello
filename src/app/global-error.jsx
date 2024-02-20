@@ -10,10 +10,10 @@ export default function GlobalError({ error }) {
   }, [error]);
 
   return (
-    <html>
+    <htm lang="eng">
       <body>
         <Error />
       </body>
-    </html>
+    </htm>
   );
 }
