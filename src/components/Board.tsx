@@ -25,7 +25,7 @@ export type CardType = {
 }
 export const defaultCards = [
     { id: "Aditya", name: "Task 1", index: 0, columnId: 'Aditya' },
-    { id: "Aditya", name: "Task 6", index: 0, columnId: 'Aditya' },
+    { id: "Ashly", name: "Task 6", index: 0, columnId: 'Aditya' },
     { id: "Anjali", name: "Task 2", index: 2, columnId: 'Aditya' },
     { id: "Anurag", name: "Task 3", index: 3, columnId: 'Chota bheem' },
 
