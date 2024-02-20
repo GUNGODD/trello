@@ -7,6 +7,7 @@ import Board, { CardType } from "./Board";
 
 type ColumnProps = {
     name: string;
+    id:  string;
     cards: CardType[];
     setCards: (cards: CardType[]) => void;
 
@@ -15,18 +16,22 @@ type ColumnProps = {
 
 
 
-export default function Column({ name, cards, setCards }: ColumnProps) {
+export default function Column({id , name, cards, setCards }: ColumnProps) {
     console.log({cards});
     // Card handling funciton 
+    function setCardsForColumn(cards: CardType[], columnId:string) {
+        console.log({cards, columnId});
+      
+    }
 
-    
+
     return (
 
         <div className="w-48 shadow-md bg-white rounded-sm p-4">
             <h3>{name}</h3>
             <ReactSortable
                 list={cards}
-                setList={setCards}
+                setList={cards => setCardsForColumn(cards, id)}
                 group="cards"
                 >
 
