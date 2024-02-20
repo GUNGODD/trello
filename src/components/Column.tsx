@@ -22,7 +22,7 @@ export default function Column({id , name, cards, setCards }: ColumnProps) {
     // console.log({cards});
     // Card handling funciton 
     function setCardsForColumn(sortedCards: CardType[], NewColumnId:string) {
-        console.log({cards, NewColumnId});
+        console.log({sortedCards, NewColumnId});
         const sortedCardsIds = sortedCards.map(card => card.id);
         setCards((prevCards:CardType[]) =>{
             const newCard = [...prevCards];
@@ -30,7 +30,7 @@ export default function Column({id , name, cards, setCards }: ColumnProps) {
                 if(card.id === NewColumnId) {
                     if(sortedCardsIds.includes(newCard.id)){
                         newCard.columnId = NewColumnId;
-                     console.log(newCard.name + " : "  + NewColumnId);
+                    //  console.log(newCard.name + " : "  + NewColumnId);
                     }
                     
               }
