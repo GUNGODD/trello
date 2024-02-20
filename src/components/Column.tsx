@@ -3,13 +3,14 @@
 /* eslint-disable react/jsx-key */
 import { ItemInterface, ReactSortable } from "react-sortablejs";
 import Board, { CardType } from "./Board";
+import { SetStateAction } from "react";
 
 
 type ColumnProps = {
-    name: string;
     id:  string;
+    name: string;
     cards: CardType[];
-    setCards: (cards: CardType[]) => void;
+    setCards: SetStateAction<any>;
 
 }
 
@@ -19,8 +20,21 @@ type ColumnProps = {
 export default function Column({id , name, cards, setCards }: ColumnProps) {
     // console.log({cards});
     // Card handling funciton 
-    function setCardsForColumn(cards: CardType[], columnId:string) {
-        console.log({cards, columnId});
+    function setCardsForColumn(sortedCards: CardType[], NewColumnId:string) {
+        console.log({cards, NewColumnId});
+        const sortedCardsIds = sortedCards.map(card => card.id);
+        setCards((prevCards:CardType[]) =>{
+            const newCard = [...prevCards];
+            newCard.forEach(card => {
+                if(card.id === NewColumnId) {
+                    if(sortedCardsIds.includes(newCard.id)){
+                        newCard.columnId = NewColumnId
+                    }
+                    
+              }
+            });
+            return newCard;
+        });
       
     }
 

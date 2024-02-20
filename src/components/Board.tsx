@@ -18,6 +18,7 @@ export type  CardType = {
 id:string,
 name:string | number,
 order:number,
+columnId:string
 };
 
  const defaultCards = [ 
