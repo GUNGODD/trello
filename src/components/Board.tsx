@@ -1,3 +1,4 @@
+
 /* eslint-disable react/jsx-key */
 // Board.jsx
 "use client";
@@ -25,11 +26,12 @@ export type CardType = {
 }
 export const defaultCards = [
     { id: "Aditya", name: "Task 1", index: 0, columnId: 'Aditya' },
-    { id: "Ashly", name: "Task 6", index: 0, columnId: 'Aditya' },
-    { id: "Anjali", name: "Task 2", index: 2, columnId: 'Aditya' },
-    { id: "Anurag", name: "Task 3", index: 3, columnId: 'Chota bheem' },
+    { id: "Ashly", name: "Task 6", index: 0, columnId: 'Ashly' },
+    { id: "Anjali", name: "Task 2", index: 2, columnId: 'Anjali' },
+    { id: "Anurag", name: "Task 3", index: 3, columnId: 'Anurag' },
 
 ];
+
 
 export default function Board() {
 
