@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -16,11 +17,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body suppressHydrationWarning={true}  className={inter.className}>
+      <body className={inter.className}>
         <header className="bg-gray-200 p-4"> 
           <a href="" className="logo">Trellooo</a>
         </header>
-        <main className="p-8">
+        <main className="p-8 flex ">
           {children}
         </main>
         

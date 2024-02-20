@@ -1,47 +1,37 @@
-import React, { SetStateAction } from "react";
-import { CardType } from "@/components/Board";
-import { ReactSortable } from "react-sortablejs";
-import { log } from "console";
+
+
+/* eslint-disable react/jsx-key */
+import Board from "./Board";
+
 
 type ColumnProps = {
-    id: string;
-    name: string;
-    cards: CardType[];
-    setCards: SetStateAction<any>;
-};
+    name: String;
+}
 
-export default function Column({ id, name, cards, setCards }: ColumnProps) {
-    function setCardsForColumn(sortedCards: CardType[], newColumnId: string) {
-        setCards((prevCards: CardType[]) => {
-            const newCards = [...prevCards];
-            sortedCards.forEach((sortedCard: CardType, newIndex: number) => {
-                const foundCardIndex = newCards.findIndex(card => card.id === sortedCard.id);
-                if (foundCardIndex !== -1) {
-                    const foundCard = newCards[foundCardIndex];
-                    foundCard.index = newIndex;
-                    foundCard.columnId = newColumnId;
-                    newCards[foundCardIndex] = foundCard; // Update the card in the array
-                }
-            });
-            return newCards;
-        });
-    }
+const cards = [ 
+
+    { id: "1", name: "Task 1", order: 1 },
+    { id: "2", name: "Task 2", order: 2 },
+    { id: "3", name: "Task 3", order: 3 },
+    { id: "4", name: "Task 4", order: 4 },
+    { id: "5", name: "Task 5", order: 5 },
     
+];
 
+
+
+export default  function  Column ({name}:ColumnProps){
     return (
-        <div className="w-48 bg-white shadow-sm rounded-md p-2">
-            <h3>{name}</h3>
-            <ReactSortable
-                list={cards}
-                setList={sortedCards => setCardsForColumn(sortedCards, id)} // Corrected parameter name
-                group="cards"
-            >
-                {cards.map(card => (
-                    <div key={card.id} className="border my-2 p-4 rounded-md">
-                        <span>{card.name}</span>
-                    </div>
-                ))}
-            </ReactSortable>
-        </div>
+    
+     <div className="w-36 shadow-md bg-white rounded-sm p-2">
+      <h3>{name}</h3> 
+        {cards.map(card => (
+            <div className="border my-2 p-2 rounded-md">
+                <span>{card.name}</span>
+            </div>
+        ))}         
+
+                </div>
+ 
     );
 }
