@@ -8,9 +8,9 @@ import NewColumnForm from "./forms/NewColumnForm";
 
 const defaultColumns  = [
 
-    {id: 'sxsd', name: 'todo', index:0},
-    {id: 'ppdf', name: 'in progress', index:1},
-    {id: 'kdxk', name: 'done', index:2},
+    {id: 'col1', name: 'todo', index:1},
+    {id: 'col2', name: 'in progress', index:2},
+    {id: 'col3', name: 'done', index:3},
 ];
 
 export type  CardType = {
@@ -22,11 +22,11 @@ order:number,
 
  const defaultCards = [ 
 
-    { id: "1", name: "Task 1", order: 1, columnId:"sxsd" },
-    { id: "2", name: "Task 2", order: 2, columnId:"ppdf" },
-    { id: "3", name: "Task 3", order: 3, columnId:"sxsd" },
-    { id: "4", name: "Task 4", order: 4, columnId:"kdxd" },
-    { id: "5", name: "Task 5", order: 5, columnId: "kdxk"},
+    { id: "1", name: "Task 1", order: 1, columnId:"col1" },
+    { id: "2", name: "Task 2", order: 2, columnId:"col1" },
+    { id: "3", name: "Task 3", order: 3, columnId:"col2" },
+    { id: "4", name: "Task 4", order: 4, columnId:"col3" },
+
     
 ];
 

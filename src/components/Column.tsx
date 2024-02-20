@@ -17,7 +17,7 @@ type ColumnProps = {
 
 
 export default function Column({id , name, cards, setCards }: ColumnProps) {
-    console.log({cards});
+    // console.log({cards});
     // Card handling funciton 
     function setCardsForColumn(cards: CardType[], columnId:string) {
         console.log({cards, columnId});
