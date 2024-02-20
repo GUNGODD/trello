@@ -1,6 +1,7 @@
 import React, { SetStateAction } from "react";
 import { CardType } from "@/components/Board";
 import { ReactSortable } from "react-sortablejs";
+import { log } from "console";
 
 type ColumnProps = {
     id: string;
@@ -27,9 +28,11 @@ export default function Column({ id, name, cards, setCards }: ColumnProps) {
             sortedCards.forEach((sortedCards:CardType , newIndex:number)=>{
                     const foundCard = newCards.find(newCards => newCards.id ===sortedCards.id );
                     if(foundCard){
+                        console.log(foundCard);
                      foundCard.index = newIndex; 
                     }
             });
+        console.log({newCards})
             
             return newCards;
             });
