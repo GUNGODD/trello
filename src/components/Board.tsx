@@ -40,7 +40,8 @@ export default  function Board(){
         <div className="flex  gap-4">
             {columns.map(column =>(
                 // eslint-disable-next-line react/jsx-key
-           <Column {...column} 
+           <Column  key={column.id}
+           {...column} 
            setCards ={setCards}
            cards ={cards.sort((a,b)=> a.index - b.index)
             .filter(c => c.columnId === column.id)} />

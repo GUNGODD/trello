@@ -33,7 +33,7 @@ export default function Column({id , name, cards, setCards }: ColumnProps) {
             if ( foundCard) {
                 // console.log({card:foundCard.name, newIndex});
                 foundCard.index  = newIndex;
-                foundCard.columnId = NewColumnId;
+                foundCard.columnId = NewColumnId;  // bug previous 
             }
            });
         //    console.log({newCard});
@@ -51,13 +51,15 @@ export default function Column({id , name, cards, setCards }: ColumnProps) {
                 list={cards}
                 setList={cards => setCardsForColumn(cards, id)}
                 group="cards"
+                className="min-h-12" // drop area of the item
+                ghostClass = "opacity-60" // ghost item
                 >
 
 
 
 
                 {cards.map(card => (
-                    <div className="border my-2 p-4 rounded-md">
+                    <div key={card.id} className="border bg-white my-2 p-4 rounded-md">
                         <span>{card.name}</span>
                     </div>
                 ))}
