@@ -13,6 +13,7 @@ export default async function Header() {
           {session && (
             <>
               Hello, {session?.user?.name}
+           <button className="border border-gray-800  hover:bg-red-500  bg-white-400 rounded-md py-2 px-4 ml-4">Logout </button>
               
             </>
           )}
