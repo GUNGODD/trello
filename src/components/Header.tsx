@@ -2,6 +2,9 @@
 import {authOptions} from "@/lib/authOptions";
 import {getServerSession} from "next-auth";
 import Link from "next/link";
+import LoginButton from "./LogoutButton";
+import LogoutButton from '@/components/LogoutButton';
+
 
 export default async function Header() {
   const session = await getServerSession(authOptions);
@@ -12,16 +15,18 @@ export default async function Header() {
         <div>
           {session && (
             <>
-              Hello, {session?.user?.name}
-           <button className="border border-gray-800  hover:bg-red-500  bg-white-400 rounded-md py-2 px-4 ml-4">Logout </button>
-              
+              Hello, {session?.user?.name} 
+              <LogoutButton/>           
             </>
           )}
           {!session && (
+            
             <>
-              Not logged in
-             
+            Not Loged In  
+            <LoginButton/>
             </>
+             
+          
           )}
         </div>
       </div>
