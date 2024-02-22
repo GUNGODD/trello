@@ -1,5 +1,6 @@
 "use client";
 
+import { redirect } from "next/dist/server/api-utils";
 import createBoard from "../actions/boardActions";
 
 export default function NewBoardPage(){
@@ -8,7 +9,8 @@ const boardName = formData.get('name')?.toString() || '';
 
 // or 
 // await createBoard(boardName as string); 
-       
+     const {id} =   await createBoard(boardName);
+     redirect(`/boards/${id}`);
     }
     
     return (
