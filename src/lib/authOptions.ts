@@ -2,21 +2,30 @@ import NextAuth, { AuthOptions } from "next-auth"
 import GoogleProvider from "next-auth/providers/google";
 import {MongoDBAdapter} from '@next-auth/mongodb-adapter'
 import clientPromise from "@/lib/mongoClient"; 
+import Github from "next-auth/providers/github";
+import GitHubProvider from "next-auth/providers/github";
 
 //@ts-ignore
 
-export  const authOptions: AuthOptions = {
-    providers: [
-        GoogleProvider({
-            clientId: process.env.GOOGLE_CLIENT_ID as string,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-          }),
-        
+
+export const authOptions:AuthOptions = {
+    secret: process.env.AUTH_SECRET,
+    // providers: [
+    //  GitHubProvider({
+    //     clientId: process.env.GITHUB_CLIENT_ID as string,
+    //     clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+    //   }),
+    // ],
+    providers : [
+      GoogleProvider({
+        clientId: process.env.GOOGLE_CLIENT_ID as string,
+        clientSecret: process.env.GOOGLE_ID_SECRET as string,
+      }),
     ],
-}; 
- // ts-ignore  
- // adapter 
-  adapter: MongoDBAdapter(clientPromise)
+      // @ts-ignore
+      adapter: MongoDBAdapter(clientPromise),
+  };
+
 
 
 
