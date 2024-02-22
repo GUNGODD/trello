@@ -2,6 +2,8 @@
 import Board from "@/components/Board";
 import LoginView from "@/components/views/LoginView";
 import { authOptions } from "@/lib/authOptions";
+import { faArrowRightArrowLeft, faRightLong } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getServerSession } from "next-auth";
 import { getSession } from "next-auth/react";
 import Link from "next/link";
@@ -23,9 +25,9 @@ export default async function Home() {
 {/* <Board /> */}
 
 <div>
-<Link  className="btn primary inline-block"
+<Link  className="btn primary inline-flex gap-1 "
 href={'/new-board'}>
-  Create new Board &rarr;
+  Create new Board  <FontAwesomeIcon className="h-6" icon={faRightLong} />
   </Link>
 
 </div>
