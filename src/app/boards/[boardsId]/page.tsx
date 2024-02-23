@@ -1,6 +1,6 @@
 'use server';
 
-import BoardsTiles from "@/components/BoardsTiles";
+import BoardsTiles from  "@/components/BoardsTiles"
 import {liveblocksClient} from "@/lib/liveblocksClient";
 import {getUserEmail} from "@/lib/userClient";
 

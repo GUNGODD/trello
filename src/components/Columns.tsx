@@ -1,30 +1,47 @@
+'use client';
+import {Column, useMutation, useStorage} from "@/app/liveblocks.config";
+import NewColumnForm from "@/components/forms/NewColumnForm";
+import {LiveList, LiveObject, shallow} from "@liveblocks/core";
+import {ReactSortable} from "react-sortablejs";
+import {default as BoardColumn} from '@/components/Column';
 
- import Board from "@/components/Board";
-import { CardType } from './Board';
+export default function Columns() {
+  const columns = useStorage(root => root.columns.map(c => ({...c})), shallow);
 
- 
- 
- type ColumnProps = {
-  
-    name: String;
-    cards:CardType[];
-   
+  const updateColumns = useMutation(({storage}, columns:LiveObject<Column>[]) => {
+    storage.set('columns', new LiveList(columns));
+  }, []);
 
-    
-}; // do not make any typos 
+  function setColumnsOrder(sortedColumns: Column[]) {
+    const newColumns:LiveObject<Column>[] = [];
+    sortedColumns.forEach((sortedColumn, newIndex) => {
+      const newSortedColumn = {...sortedColumn};
+      newSortedColumn.index = newIndex;
+      newColumns.push(new LiveObject(newSortedColumn));
+    });
+    updateColumns(newColumns);
+  }
 
+  if (!columns) {
+    return;
+  }
 
-
-export default function Column({ name, cards }: ColumnProps) {
-    return (
-        <div  className="w-48 bg-gray shadow-lg rounded-md p-2">
-            <h3>{name}</h3>
-            {cards.map(card => (
-                // eslint-disable-next-line react/jsx-key
-                <div  className="border my-2 p-4 rounded-md">
-                    <span>{card.name}</span>
-                </div>
-            ))}
-        </div>
-    );
+  return (
+    <div className="flex gap-4">
+      <ReactSortable
+        group={'board-column'}
+        list={columns}
+        className="flex gap-4"
+        ghostClass="opacity-40"
+        setList={setColumnsOrder}>
+        {columns?.length > 0 && columns.map(column => (
+          <BoardColumn
+            key={column.id}
+            {...column}
+          />
+        ))}
+      </ReactSortable>
+      <NewColumnForm/>
+    </div>
+  );
 }

@@ -9,7 +9,7 @@ body{
 button[type="submit"],
 button.primary,
 .btn{
-    @apply bg-gray-200 text-gray-900 py-2 px-4 border border-gray-200 rounded-md hover:bg-blue-600 ;
+    @apply bg-gray-200 text-gray-900 py-2 px-4 border border-gray-200 rounded-md;
 }
 button[type="submit"],
 .primary{

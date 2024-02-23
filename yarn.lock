@@ -160,6 +160,13 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
+"@liveblocks/client@1.10.0", "@liveblocks/client@^1.10.0":
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/@liveblocks/client/-/client-1.10.0.tgz#9fe6d9760669b49d342b2447d9d67074bd352f78"
+  integrity sha512-UL32qEgjYdUaQbTBnMAegab4umVRQYFJEBccVW94hDc2wwxdf0rIcqZTvZOX2vqmWXWhKiIiWo1Pu8rCTorFfg==
+  dependencies:
+    "@liveblocks/core" "1.10.0"
+
 "@liveblocks/core@1.10.0":
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/@liveblocks/core/-/core-1.10.0.tgz#0528103527f3369eca383c55764ea72b71b42518"
@@ -174,6 +181,25 @@
     "@stablelib/base64" "^1.0.1"
     fast-sha256 "^1.3.0"
     node-fetch "^2.6.1"
+
+"@liveblocks/react@^1.10.0":
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/@liveblocks/react/-/react-1.10.0.tgz#963c9d9b69256eca15cad8b7386af213eed5ea8a"
+  integrity sha512-SASkpQFeeHtD3QG+4sCZ9v4ofVyhZB3EE1jYTSzvnVMaoxThyOlxt5FRzRa/XZRpjihbQOpI6vLdiZGZDBgVJw==
+  dependencies:
+    "@liveblocks/client" "1.10.0"
+    "@liveblocks/core" "1.10.0"
+    nanoid "^3"
+    use-sync-external-store "^1.2.0"
+
+"@liveblocks/yjs@^1.10.0":
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/@liveblocks/yjs/-/yjs-1.10.0.tgz#dfb83d0a09ddb776ec7c4214963941d49f4e0d4f"
+  integrity sha512-Q5FVdtMMdhgR7N+gfEEECmBXcHC0ZnrUl675GQD8Up8nQy+1eJyyqPdiGNdPJa29dbADiQQCD8EiOdJHRlS8fw==
+  dependencies:
+    "@liveblocks/client" "1.10.0"
+    "@liveblocks/core" "1.10.0"
+    js-base64 "^3.7.5"
 
 "@mongodb-js/saslprep@^1.1.0":
   version "1.1.4"
@@ -2004,6 +2030,11 @@ jose@^5.1.3, jose@^5.2.2:
   resolved "https://registry.yarnpkg.com/jose/-/jose-5.2.2.tgz#b91170e9ba6dbe609b0c0a86568f9a1fbe4335c0"
   integrity sha512-/WByRr4jDcsKlvMd1dRJnPfS1GVO3WuKyaurJ/vvXcOaUQO8rnNObCQMlv/5uCceVQIq5Q4WLF44ohsdiTohdg==
 
+js-base64@^3.7.5:
+  version "3.7.7"
+  resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-3.7.7.tgz#e51b84bf78fbf5702b9541e2cb7bfcb893b43e79"
+  integrity sha512-7rCnleh0z2CkXhH67J8K1Ytz0b2Y+yxTPL+/KOJoa20hfnVQ/3/T6W/KflYI4bRHRagNeXeU2bkNGI3v1oS/lw==
+
 "js-tokens@^3.0.0 || ^4.0.0":
   version "4.0.0"
   resolved "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz"
@@ -2239,7 +2270,7 @@ mz@^2.7.0:
     object-assign "^4.0.1"
     thenify-all "^1.0.0"
 
-nanoid@^3.3.6, nanoid@^3.3.7:
+nanoid@^3, nanoid@^3.3.6, nanoid@^3.3.7:
   version "3.3.7"
   resolved "https://registry.npmjs.org/nanoid/-/nanoid-3.3.7.tgz"
   integrity sha512-eSRppjcPIatRIMC1U6UngP8XFcz8MQWGQdt1MTBQ7NaAmvXDfvNxbvWV3x2y6CdEUciCSsDHDQZbhYaB8QEo2g==
@@ -3218,6 +3249,11 @@ uri-js@^4.2.2:
   integrity sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==
   dependencies:
     punycode "^2.1.0"
+
+use-sync-external-store@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/use-sync-external-store/-/use-sync-external-store-1.2.0.tgz#7dbefd6ef3fe4e767a0cf5d7287aacfb5846928a"
+  integrity sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==
 
 util-deprecate@^1.0.2:
   version "1.0.2"

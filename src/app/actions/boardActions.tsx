@@ -1,20 +1,12 @@
-'use server';
-
-import {authOptions} from "@/lib/authOptions";
-import {getLiveblocksClient, liveblocksClient} from "@/lib/liveblocksClient";
-
-import {getSession} from "next-auth/react";
-
-
-import {Liveblocks, RoomInfo} from "@liveblocks/node";
-import {getServerSession} from "next-auth";
+import { Liveblocks, RoomInfo } from "@liveblocks/node";
+import { getServerSession } from "next-auth";
 import uniqid from 'uniqid';
+import { authOptions } from '@/lib/authOptions';
 
+// Importing the client directly from the module instead of using named exports
+import liveblocksClient from "@/lib/liveblocksClient";
 
-export async function createBoard(name: string) : Promise<false | RoomInfo> {
-  const liveblocksClient = new Liveblocks({
-    secret: process.env.LIVEBLOCKS_SECRET_KEY || '',
-  });
+export async function createBoard(name: string): Promise<false | RoomInfo> {
   const session = await getServerSession(authOptions);
   const email = session?.user?.email || '';
   if (email) {
@@ -33,30 +25,30 @@ export async function createBoard(name: string) : Promise<false | RoomInfo> {
   return false;
 }
 
-export async function addEmailToBoard(boardId:string, email:string) {
+export async function addEmailToBoard(boardId: string, email: string) {
   const room = await liveblocksClient.getRoom(boardId);
   const usersAccesses = room.usersAccesses;
   usersAccesses[email] = ['room:write'];
   console.log(usersAccesses);
-  await liveblocksClient.updateRoom(boardId, {usersAccesses});
+  await liveblocksClient.updateRoom(boardId, { usersAccesses });
   return true;
 }
 
-export async function updateBoard(boardId:string, updateData:any) {
+export async function updateBoard(boardId: string, updateData: any) {
   const result = await liveblocksClient.updateRoom(boardId, updateData);
-  console.log({result});
+  console.log({ result });
   return true;
 }
 
-export async function removeEmailFromBoard(boardId:string, email:string) {
+export async function removeEmailFromBoard(boardId: string, email: string) {
   const room = await liveblocksClient.getRoom(boardId);
-  const usersAccesses:any = room.usersAccesses;
+  const usersAccesses: any = room.usersAccesses;
   usersAccesses[email] = null;
-  await liveblocksClient.updateRoom(boardId, {usersAccesses});
+  await liveblocksClient.updateRoom(boardId, { usersAccesses });
   return true;
 }
 
-export async function deleteBoard(boardId:string) {
+export async function deleteBoard(boardId: string) {
   await liveblocksClient.deleteRoom(boardId);
   return true;
 }
