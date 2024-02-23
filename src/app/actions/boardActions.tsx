@@ -1,7 +1,7 @@
 import { Liveblocks, RoomInfo } from "@liveblocks/node";
 import { getServerSession } from "next-auth";
 import uniqid from 'uniqid';
-import { authOptions } from '@/lib/authOptions';
+import { authOptions } from "../../lib/authOptions"
 
 // Importing the client directly from the module instead of using named exports
 import liveblocksClient from "@/lib/liveblocksClient";
