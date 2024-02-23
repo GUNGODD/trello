@@ -1,4 +1,3 @@
-import {default } from '../../../tailwind.config';
 'use server';
 
 import {authOptions} from "@/lib/authOptions";
