@@ -3,9 +3,19 @@ import { getServerSession } from "next-auth";
 import uniqid from 'uniqid';
 import { authOptions } from "../../lib/authOptions"
 
-// Importing the client directly from the module instead of using named exports
-import liveblocksClient from "@/lib/liveblocksClient";
+import {liveblocksClient} from '../../lib/liveblocksClient'
 
+
+
+// Importing the client directly from the module instead of using named exports
+
+/**
+ * 
+ *
+ * @export
+ * @param {string} name 
+ * @return {(Promise<false | RoomInfo>)} 
+ */
 export async function createBoard(name: string): Promise<false | RoomInfo> {
   const session = await getServerSession(authOptions);
   const email = session?.user?.email || '';
