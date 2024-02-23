@@ -6,7 +6,7 @@ import {ReactSortable} from "react-sortablejs";
 import {default as BoardColumn} from '@/components/Column';
 
 export default function Columns() {
-  const columns = useStorage(root => root.columns.map(c => ({...c})), shallow);
+  const columns = useStorage(root => root.columns?.map(c => ({...c})), shallow);
 
   const updateColumns = useMutation(({storage}, columns:LiveObject<Column>[]) => {
     storage.set('columns', new LiveList(columns));
