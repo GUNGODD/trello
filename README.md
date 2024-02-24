@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>🚀 Welcome to Our Trello Project 📋</h1>
+  <h1>🚀 Welcome to my Trello Project 📋</h1>
   <p><i>Welcome to our Trello project! Dive into seamless task management and collaboration.</i></p>
 </div>
 
