@@ -6,7 +6,7 @@
 ## 🌟 Overview
 Our Trello project is more than just a task manager. It's a dynamic platform that brings together task organization, progress tracking, and seamless collaboration among team members. Let's explore its full potential!
 
-## 🎯 Key Features
+## 🎯 Key Features🐘
 - **Task Management:** Streamline task creation, editing, and prioritization.
 - **Labels & Categories:** Organize tasks with customizable labels.
 - **Due Dates:** Stay on top of deadlines with intuitive due date settings.
