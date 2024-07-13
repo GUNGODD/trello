@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>🚀 Welcome to my Notes  APP  📋</h1>
+  <h1>🚀 Welcome to MY Notes  APP  📋</h1>
   <p><i>Welcome to my Trello project! Dive into seamless task management and collaboration.</i></p>
 </div>
 
