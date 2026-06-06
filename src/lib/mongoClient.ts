@@ -15,13 +15,19 @@ if (!process.env.MONGODB_URI) {
   };
 
   if (!globalWithMongoClientPromise._mongoClientPromise) {
-    client = new MongoClient(uri);
+    client = new MongoClient(uri, {
+      serverSelectionTimeoutMS: 5000,
+      connectTimeoutMS: 5000,
+    });
     globalWithMongoClientPromise._mongoClientPromise = client.connect();
   }
 
   clientPromise = globalWithMongoClientPromise._mongoClientPromise;
 } else {
-  client = new MongoClient(uri);
+  client = new MongoClient(uri, {
+    serverSelectionTimeoutMS: 5000,
+    connectTimeoutMS: 5000,
+  });
   clientPromise = client.connect();
 }
 
