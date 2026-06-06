@@ -1,17 +1,28 @@
-import { createClient } from "@liveblocks/client";
-import {LiveList, LiveObject} from "@liveblocks/core";
-import { createRoomContext } from "@liveblocks/react";
+import { LiveList, LiveObject } from "@liveblocks/client";
 
-const client = createClient({
-  authEndpoint: "/api/liveblocks-auth",
-  throttle: 100,
-});
-
-
-export type Presence = {
-  boardId?: null|string;
-  cardId?: null|string;
+export type Label = {
+  id: string;
+  name: string;
+  color: string;
 };
+
+export type ChecklistItem = {
+  id: string;
+  text: string;
+  done: boolean;
+};
+
+export type ActivityEntry = {
+  id: string;
+  userName: string;
+  userImage: string;
+  action: string;
+  target: string;
+  timestamp: number;
+};
+
+export type Priority = "LOW" | "MODERATE" | "HIGH" | "ON BOARDING";
+export type Status = "Pending" | "Under Review" | "In Progress" | "In Correction";
 
 export type Column = {
   name: string;
@@ -24,52 +35,45 @@ export type Card = {
   id: string;
   index: number;
   columnId: string;
+  labels: Label[];
+  dueDate: string | null;
+  assignees: string[];
+  checklist: ChecklistItem[];
+  coverImage: string | null;
+  description: string;
+  priority: Priority;
+  status: Status;
+  commentsCount: number;
+  attachmentsCount: number;
 };
 
-type Storage = {
-  columns: LiveList<LiveObject<Column>>;
-  cards: LiveList<LiveObject<Card>>;
+export type Presence = {
+  boardId?: null | string;
+  cardId?: null | string;
 };
 
-type UserMeta = {
-  id: string;
-  info: {
-    name: string;
-    email: string;
-    image: string;
-  },
-}
-
-type RoomEvent = {};
-
-type ThreadMetadata = {
+export type ThreadMetadata = {
   cardId: string;
 };
 
-export const {
-  RoomProvider,
-  useMyPresence,
-  useUpdateMyPresence,
-  useStorage,
-  useMutation,
-  useRoom,
-  useSelf,
-  useOthers,
-  useThreads,
-} = createRoomContext<
-  Presence,
-  Storage,
-  UserMeta,
-  RoomEvent,
-  ThreadMetadata
->(client, {
-  resolveUsers: async ({userIds}) => {
-    const response = await fetch(`/api/users?ids=` + userIds.join(','));
-    return await response.json();
-  },
-  resolveMentionSuggestions: async ({text}) => {
-    const response = await fetch(`/api/users?search=`+text);
-    const users = await response.json();
-    return users.map((user:UserMeta) => user.id);
-  },
-});
+declare global {
+  interface Liveblocks {
+    Presence: Presence;
+    Storage: {
+      columns: LiveList<LiveObject<Column>>;
+      cards: LiveList<LiveObject<Card>>;
+      activity: LiveList<LiveObject<ActivityEntry>>;
+    };
+    UserMeta: {
+      id: string;
+      info: {
+        name: string;
+        email: string;
+        image: string;
+      };
+    };
+    ThreadMetadata: ThreadMetadata;
+  }
+}
+
+export {};

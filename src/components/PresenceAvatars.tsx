@@ -1,6 +1,7 @@
-'use client';
-import {Presence, useOthers} from "@/app/liveblocks.config";
-import {shallow} from "@liveblocks/core";
+"use client";
+import { Presence } from "@/app/liveblocks.config";
+import { useOthers } from "@liveblocks/react/suspense";
+import { shallow } from "@liveblocks/client";
 
 type Props = {
   presenceKey: keyof Presence;
@@ -8,20 +9,26 @@ type Props = {
 };
 
 export default function PresenceAvatars({
-  presenceKey, presenceValue
+  presenceKey,
+  presenceValue,
 }: Props) {
-
-  const others = useOthers(users => {
-    return users.filter(u => u.presence?.[presenceKey] === presenceValue);
-  }, shallow);
+  const others = useOthers(
+    (users) => {
+      return users.filter((u) => u.presence?.[presenceKey] === presenceValue);
+    },
+    shallow
+  );
 
   return (
-    <div className="flex gap-1">
-      {others.map(user => (
+    <div className="flex gap-0.5 md:gap-1">
+      {others.map((user) => (
         <div key={user.id}>
           <img
-            className="size-8 rounded-full"
-            src={user.info.image} alt="avatar"/>
+            className="size-6 md:size-8 rounded-full border-2"
+            style={{ borderColor: 'var(--color-bg-secondary)' }}
+            src={user.info.image}
+            alt="avatar"
+          />
         </div>
       ))}
     </div>

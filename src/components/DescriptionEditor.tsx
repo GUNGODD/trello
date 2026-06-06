@@ -1,75 +1,61 @@
-import {useSelf} from "@/app/liveblocks.config";
-import {faBold, faHeading, faItalic, faUnderline} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import LiveblocksProvider from "@liveblocks/yjs";
-import {Collaboration} from "@tiptap/extension-collaboration";
-import {CollaborationCursor} from "@tiptap/extension-collaboration-cursor";
-import {Placeholder} from "@tiptap/extension-placeholder";
-import {Underline} from "@tiptap/extension-underline";
-import {Doc} from "yjs";
-import {EditorContent, useEditor} from '@tiptap/react';
-import {StarterKit} from '@tiptap/starter-kit';
+"use client";
+import { useLiveblocksExtension } from "@liveblocks/react-tiptap";
+import { faBold, faHeading, faItalic, faUnderline } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { EditorContent, useEditor } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+import Underline from "@tiptap/extension-underline";
+import Placeholder from "@tiptap/extension-placeholder";
 
-type EditorProps = {
-  doc: Doc;
-  provider: LiveblocksProvider<any, any, any, any>;
-  cardId: string;
-};
-
-export default function DescriptionEditor({doc,provider,cardId}:EditorProps) {
-
-  const userInfo = useSelf(me => me.info);
+export default function DescriptionEditor({ cardId }: { cardId: string }) {
+  const liveblocks = useLiveblocksExtension({
+    field: cardId,
+  });
 
   const editor = useEditor({
     extensions: [
+      liveblocks,
       StarterKit.configure({
         history: false,
       }),
       Placeholder.configure({
-        emptyEditorClass: 'is-editor-empty',
-        placeholder: 'Task description...',
+        emptyEditorClass: "is-editor-empty",
+        placeholder: "Task description...",
       }),
-      Collaboration.configure({
-        document: doc,
-        field: cardId,
-      }),
-      CollaborationCursor.configure({
-        provider,
-        user: userInfo || undefined,
-      }),
-      Underline.configure(),
+      Underline,
     ],
+    immediatelyRender: false,
   });
 
   return (
     <div>
       <div className="flex gap-1 mb-1 mt-2 editor-buttons">
         <button
-          className={editor?.isActive('bold') ? 'active' : ''}
+          className={editor?.isActive("bold") ? "active" : ""}
           onClick={() => editor?.chain().focus().toggleBold().run()}
         >
-          <FontAwesomeIcon icon={faBold}/>
+          <FontAwesomeIcon icon={faBold} />
         </button>
         <button
-          className={editor?.isActive('italic') ? 'active' : ''}
+          className={editor?.isActive("italic") ? "active" : ""}
           onClick={() => editor?.chain().focus().toggleItalic().run()}
         >
-          <FontAwesomeIcon icon={faItalic}/>
+          <FontAwesomeIcon icon={faItalic} />
         </button>
         <button
-          className={editor?.isActive('underline') ? 'active' : ''}
+          className={editor?.isActive("underline") ? "active" : ""}
           onClick={() => editor?.chain().focus().toggleUnderline().run()}
         >
-          <FontAwesomeIcon icon={faUnderline}/>
+          <FontAwesomeIcon icon={faUnderline} />
         </button>
         <button
-          className={editor?.isActive('heading') ? 'active' : ''}
-          onClick={() => editor?.chain().focus().toggleHeading({level:2}).run()}
+          className={editor?.isActive("heading") ? "active" : ""}
+          onClick={() => editor?.chain().focus().toggleHeading({ level: 2 }).run()}
         >
-          <FontAwesomeIcon icon={faHeading}/>
+          <FontAwesomeIcon icon={faHeading} />
         </button>
       </div>
-      <EditorContent editor={editor} className=""/>
+      <EditorContent editor={editor} />
     </div>
   );
 }
