@@ -6,9 +6,9 @@ import {faArrowRightFromBracket} from "@fortawesome/free-solid-svg-icons";
 export default function LogoutButton() {
   return (
     <button onClick={() => signOut()}
-            className="bg-gray-300 py-2 px-4 ml-2 rounded-md inline-flex gap-2 items-center">
+            className="bg-transparent hover:bg-white/10 text-gray-300 hover:text-white py-1.5 px-3 rounded text-sm font-semibold inline-flex gap-2 items-center transition-colors border border-white/10">
       Logout
-      <FontAwesomeIcon icon={faArrowRightFromBracket} />
+      <FontAwesomeIcon icon={faArrowRightFromBracket} className="text-xs" />
     </button>
   );
 }
