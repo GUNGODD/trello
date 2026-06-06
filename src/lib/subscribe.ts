@@ -1,6 +1,6 @@
 "use server";
 
-import mongoose from "mongoose";
+import { dbConnect } from "./dbConnect";
 import { Subscriber } from "@/models/Subscriber";
 import { ActionResult, error, success } from "./newsletter-utils";
 import { newsletterSchema } from "./schema";
@@ -39,7 +39,7 @@ export const subscribe = async (email: string): Promise<ActionResult<string>> =>
   }
 
   try {
-    await mongoose.connect(connectionString);
+    await dbConnect();
     const normalizedEmail = parsed.data.email.toLowerCase().trim();
     const existing = await Subscriber.findOne({ email: normalizedEmail });
     if (existing) {

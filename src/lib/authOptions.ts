@@ -13,4 +13,7 @@ export const authOptions:AuthOptions = {
   ],
     // @ts-ignore
     adapter: MongoDBAdapter(clientPromise),
+  pages: {
+    signIn: "/login",
+  },
 };

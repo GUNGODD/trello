@@ -1,6 +1,5 @@
 import { User, UserType } from "@/models/User";
-import clientPromise from "@/lib/mongoClient";
-import mongoose from "mongoose";
+import { dbConnect } from "@/lib/dbConnect";
 import { NextRequest } from "next/server";
 
 function escapeRegex(str: string): string {
@@ -9,12 +8,12 @@ function escapeRegex(str: string): string {
 
 export async function GET(req: NextRequest) {
   const url = new URL(req.url);
-  const connectionString = process.env.MONGODB_URI;
-  if (!connectionString) {
-    return new Response("no db connection string", { status: 500 });
+  try {
+    await dbConnect();
+  } catch (dbErr) {
+    console.error("[Users API] DB connection failed:", dbErr);
+    return new Response("Database connection failed", { status: 500 });
   }
-
-  await mongoose.connect(connectionString);
 
   let users = [];
 

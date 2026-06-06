@@ -1,11 +1,12 @@
-'use client';
-import {signIn} from "next-auth/react";
+import Link from "next/link";
 
 export default function LoginButton() {
   return (
-    <button onClick={() => signIn('google')}
-            className="bg-gray-300 py-2 px-4 ml-2 rounded-md">
+    <Link
+      href="/login"
+      className="bg-[#579dff] hover:bg-[#85b8ff] text-[#1d2125] font-semibold text-sm py-1.5 px-4 ml-2 rounded transition-colors"
+    >
       Login
-    </button>
+    </Link>
   );
 }
