@@ -13,6 +13,7 @@ type ProviderProps = {
   children: React.ReactNode,
 };
 
+
 export const BoardContext = createContext<BoardContextProps>({});
 
 export function BoardContextProvider({children}:ProviderProps) {

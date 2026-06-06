@@ -21,6 +21,7 @@ export async function dbConnect() {
     const opts = {
       bufferCommands: false,
       serverSelectionTimeoutMS: 5000, // Fail fast if DB is unreachable (5s)
+      autoSelectFamily: false,
     };
 
     cached.promise = mongoose.connect(MONGODB_URI!, opts).then((mongooseInstance) => {

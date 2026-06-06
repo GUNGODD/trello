@@ -18,6 +18,7 @@ if (!process.env.MONGODB_URI) {
     client = new MongoClient(uri, {
       serverSelectionTimeoutMS: 5000,
       connectTimeoutMS: 5000,
+      autoSelectFamily: false,
     });
     globalWithMongoClientPromise._mongoClientPromise = client.connect();
   }
@@ -27,6 +28,7 @@ if (!process.env.MONGODB_URI) {
   client = new MongoClient(uri, {
     serverSelectionTimeoutMS: 5000,
     connectTimeoutMS: 5000,
+    autoSelectFamily: false,
   });
   clientPromise = client.connect();
 }
