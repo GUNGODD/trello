@@ -1,17 +1,19 @@
 "use client";
 
 import { signIn, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, Suspense } from "react";
 import { motion } from "framer-motion";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
 
-export default function LoginPage() {
+function LoginForm() {
   const sessionInfo = useSession();
   const session = sessionInfo?.data;
   const status = sessionInfo?.status || "loading";
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const error = searchParams.get("error");
 
   useEffect(() => {
     if (status === "authenticated") {
@@ -64,6 +66,19 @@ export default function LoginPage() {
           </p>
         </div>
 
+        {/* Error Display */}
+        {error && (
+          <div className="mt-6 p-4 rounded-2xl bg-red-500/10 border border-red-500/20 text-red-200 text-xs text-center leading-relaxed">
+            <p className="font-semibold text-red-400 mb-1">Authentication Error</p>
+            {error === "OAuthCallback" && "Failed to accept the Google authentication response. Check your Google Developer Client credentials."}
+            {error === "Callback" && "Authentication callback error occurred."}
+            {error === "Default" && "An error occurred while signing in."}
+            {error === "Configuration" && "There is a server-side NextAuth configuration issue (check environment variables)."}
+            {error === "AccessDenied" && "Access has been denied to your account."}
+            {!["OAuthCallback", "Callback", "Default", "Configuration", "AccessDenied"].includes(error) && `Code: ${error}`}
+          </div>
+        )}
+
         {/* Login Button Container */}
         <div className="mt-8 flex flex-col gap-4">
           <Button
@@ -90,5 +105,17 @@ export default function LoginPage() {
         </div>
       </motion.div>
     </main>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex h-screen w-full items-center justify-center bg-[#0a0a0f] text-white">
+        <div className="h-10 w-10 animate-spin rounded-full border-4 border-t-cyan-500 border-r-transparent border-b-transparent border-l-transparent"></div>
+      </div>
+    }>
+      <LoginForm />
+    </Suspense>
   );
 }
